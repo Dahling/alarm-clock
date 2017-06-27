@@ -20,3 +20,22 @@ $(document).ready(function(){
     $('#solution').prepend('<p>Thank you, ' + email + ' has been added to our list!</p>');
   });
 });
+
+$(document).ready(function(){
+  $('#time').text(moment());
+});
+
+
+var apiKey = "d4fb66a318d2f14998282692a19d0372";
+
+$(document).ready(function() {
+  $('#weather-location').click(function() {
+    var city = $('#location').val();
+    $('#location').val("");
+
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey)
+     .then(function(response) {
+         $('.showWeather').text("The humidity in " + city + " is " + response.main.humidity + "%");
+      });
+   });
+});
